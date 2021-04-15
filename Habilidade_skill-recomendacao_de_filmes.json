@@ -1,0 +1,550 @@
+{
+  "intents": [
+    {
+      "intent": "Agradecimento",
+      "examples": [
+        {
+          "text": "obrigado"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "valeu"
+        },
+        {
+          "text": "vou assistir"
+        },
+        {
+          "text": "obrigado pela recomendação"
+        },
+        {
+          "text": "e nois"
+        },
+        {
+          "text": "ate a proxima"
+        },
+        {
+          "text": "vou ver esse filme"
+        },
+        {
+          "text": "estou indo assistir"
+        },
+        {
+          "text": "sim vou ver esse filme"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "recomendacao",
+      "examples": [
+        {
+          "text": "quero um filme"
+        },
+        {
+          "text": "que filme é bom?"
+        },
+        {
+          "text": "tem um filme para me recomendar?"
+        },
+        {
+          "text": "quero assistir algo hoje"
+        },
+        {
+          "text": "um filme"
+        },
+        {
+          "text": "Quero uma ajuda para escolher um filme?"
+        },
+        {
+          "text": "Quero escolher um filme?"
+        },
+        {
+          "text": "Tem um filme aí?"
+        },
+        {
+          "text": "Quero uma recomendação de filme?"
+        },
+        {
+          "text": "Sabe me dizer um nome de bom filme?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "saudacao",
+      "examples": [
+        {
+          "text": "olá"
+        },
+        {
+          "text": "oi"
+        },
+        {
+          "text": "eae"
+        },
+        {
+          "text": "tudo bem"
+        },
+        {
+          "text": "bom dia"
+        },
+        {
+          "text": "boa tarde"
+        },
+        {
+          "text": "boa noite"
+        },
+        {
+          "text": "e ai"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Aloha"
+        },
+        {
+          "text": "Fala"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sim-não",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Sim",
+          "synonyms": [
+            "ok",
+            "bele",
+            "beleza",
+            "pode",
+            "manda",
+            "claro",
+            "de acordo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Não",
+          "synonyms": [
+            "negativo",
+            "nem",
+            "sqn"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "genero",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Horror",
+          "synonyms": [
+            "Terror",
+            "Medo",
+            "Suspense",
+            "Susto"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Ação",
+          "synonyms": [
+            "tiro",
+            "porrada",
+            "bomba",
+            "espionagem",
+            "guerra",
+            "policial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Outros",
+          "synonyms": [
+            "qualquer",
+            "qualquer um",
+            "pode ser qualquer filme",
+            "todos",
+            "nenhum",
+            "não sei"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Romance",
+          "synonyms": [
+            "Amor",
+            "love",
+            "beijos",
+            "felizes para sempre"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Comédia",
+          "synonyms": [
+            "risos",
+            "comedia",
+            "rir",
+            "engraçado",
+            "pastelão",
+            "besteirol"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1592515800910",
+      "disabled": true,
+      "dialog_node": "response_1_1592607479250",
+      "previous_sibling": "slot_3_1592607613526"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1592515800910",
+      "dialog_node": "slot_3_1592607613526"
+    },
+    {
+      "type": "standard",
+      "title": "Filme de Horror",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "horror"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1592516933569",
+      "conditions": "@genero:Horror",
+      "dialog_node": "node_7_1592524242850",
+      "previous_sibling": "node_4_1592524213924"
+    },
+    {
+      "type": "standard",
+      "title": "Filme de Romance",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "romance"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1592516933569",
+      "conditions": "@genero:Romance",
+      "dialog_node": "node_4_1592524274187",
+      "previous_sibling": "node_7_1592524242850"
+    },
+    {
+      "type": "standard",
+      "title": "Outros Filmes",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "qualquer"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1592516933569",
+      "conditions": "@genero:Outros",
+      "dialog_node": "node_10_1592524930018",
+      "previous_sibling": "node_4_1592524274187"
+    },
+    {
+      "type": "standard",
+      "title": "Filme de Comédia",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "comédia"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1592516933569",
+      "conditions": "@genero:Comédia",
+      "dialog_node": "node_4_1592524213924",
+      "previous_sibling": "node_7_1592523278427"
+    },
+    {
+      "type": "standard",
+      "title": "Filme de Ação",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ação"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1592516933569",
+      "conditions": "@genero:Ação",
+      "dialog_node": "node_7_1592523278427"
+    },
+    {
+      "type": "standard",
+      "title": "Não",
+      "parent": "node_4_1592516437771",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_10_1592526928888"
+      },
+      "conditions": "@sim-não:Não",
+      "dialog_node": "node_7_1592527369719",
+      "previous_sibling": "node_2_1592516933569"
+    },
+    {
+      "type": "standard",
+      "title": "Sim",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Qual o gênero de filme você gosta?"
+              },
+              {
+                "text": "Qual tipo de filme?"
+              },
+              {
+                "text": "Algum gênero preferido?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1592516437771",
+      "conditions": "@sim-não:Sim",
+      "dialog_node": "node_2_1592516933569"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1592607613526",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1592607613536",
+      "previous_sibling": "handler_9_1592607613536"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_3_1592607613526",
+      "event_name": "input",
+      "dialog_node": "handler_9_1592607613536"
+    },
+    {
+      "type": "standard",
+      "title": "Recomendação Direta",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_7_1592523278427"
+      },
+      "conditions": "#recomendacao && @genero",
+      "dialog_node": "node_6_1592525724268",
+      "previous_sibling": "node_9_1592515800910"
+    },
+    {
+      "type": "standard",
+      "title": "Recomendação Indireta",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Posso te fazer uma pergunta?"
+              },
+              {
+                "text": "Você me responde uma pergunta?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#recomendacao",
+      "dialog_node": "node_4_1592516437771",
+      "previous_sibling": "node_6_1592525724268"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_10_1592526928888",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Agradecimento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Obrigado por utilizar o serviço"
+              },
+              {
+                "text": "Volte sempre"
+              },
+              {
+                "text": "Bom filme"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Agradecimento",
+      "dialog_node": "node_10_1592526928888",
+      "previous_sibling": "node_4_1592516437771"
+    },
+    {
+      "type": "standard",
+      "title": "Saudação",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#saudacao",
+      "dialog_node": "node_9_1592515800910",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Bem vindo"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": ""
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "recomendacao_de_filmes",
+  "language": "pt-br",
+  "description": ""
+}
